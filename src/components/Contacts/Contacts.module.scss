@@ -4,10 +4,11 @@
     flex-direction: column;
     align-items: center;
     position: relative;
+    padding-bottom: 1em;
 
     .logout {
         position: absolute;
-        top: 3%;
+        top: 1%;
         right: 20%;
     }
 
@@ -84,9 +85,4 @@
             }
          }
      }
-}
-
-.contact.active {
-    border: 2px solid rgb(168, 16, 49);
-    color: rgb(107, 102, 102);
 }

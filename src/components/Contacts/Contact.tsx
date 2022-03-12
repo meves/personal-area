@@ -10,16 +10,14 @@ type PropsType = {
 }
 
 const Contact: FC<PropsType> =(props) => {
-    const [id, setId] = useState(null as number | null);
     const onRemoveContact = () => {
         props.removeContact(props.id);
     }
     const onEditContact = () => {
         props.showUpdateButtonForm(props.id);
-        setId(props.id);
     }
     return (
-        <div className={`${styles.contact} ${(id !== null) ? styles.active : ""}`}>
+        <div className={styles.contact}>
             <div className={styles.name}>{props.name}</div>
             <div className={styles.city}>{props.city}</div>
             <button onClick={onEditContact} className={styles.editButton}>Edit</button>

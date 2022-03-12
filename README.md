@@ -4,12 +4,25 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-In the project directory, you can run:
+In the project directory
+move to server db directory:
+
+### cd server/
+
+Run server db:
+
+### json-server --watch db.json
+
+Runs the server db on [http://localhost:3000](http://localhost:3000)
+
+Run development server:
 
 ### `yarn start`
 
+press 'y' to confirm using suggested port, f.e 3001
+
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:3001](http://localhost:3001) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.

@@ -9,14 +9,17 @@ import styles from './Contacts.module.scss';
 import AddContactForm, { FormDataType } from "./AddContactForm";
 import SearchForm, { SearchDataType } from "./SearchForm";
 import { logout } from '../../redux/auth-reducer';
+import { receiveLogin, receiveUserId } from "../../redux/selectors/auth-selector";
 
 type PropsType = {
     contacts: Array<ContactType>
+    login: string | undefined
+    id: number | undefined
     getContacts: () => void
     addNewContact: (name: string, city: string) => void
     removeContact: (id: number) => void
     upgradeContact: (id: number, name: string, city: string) => void
-    logout: () => void
+    logout: (id?: number) => void
 }
 
 type StateType = {
@@ -73,14 +76,17 @@ class Contacts extends React.Component<PropsType, StateType> {
         });
     }
     onLogout = () => {
-        this.props.logout();
+        this.props.logout(this.props.id);
     }
     render() {
         return (
             <div className={styles.contactsWrapper}>
                 <SearchForm searchName={this.searchName}/>
                 <h1>Contact list</h1>
-                <button onClick={this.onLogout} className={styles.logout}>Logout</button>
+                <div className={styles.logout}>
+                    <button onClick={this.onLogout}>Logout</button>
+                    <span>{this.props.login}</span>
+                </div>
                 <button className={styles.button}
                         onClick={this.showAddButtonForm}>
                     Add contact
@@ -113,6 +119,8 @@ class Contacts extends React.Component<PropsType, StateType> {
 
 type MapStatePropsType = {
     contacts: Array<ContactType>
+    login: string | undefined
+    id: number | undefined
 }
 
 type MapDispatchPropsType = {
@@ -120,11 +128,13 @@ type MapDispatchPropsType = {
     addNewContact: (name: string, city: string) => void
     removeContact: (id: number) => void
     upgradeContact: (id: number, name: string, city: string) => void
-    logout: () => void
+    logout: (id?: number) => void
 }
 
 const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
-    contacts: receiveContacts(state)
+    contacts: receiveContacts(state),
+    login: receiveLogin(state),
+    id: receiveUserId(state)
 })
 
 export default connect<MapStatePropsType, MapDispatchPropsType, {} , AppStateType>(mapStateToProps,

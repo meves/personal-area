@@ -1,8 +1,10 @@
+import { loginUser, logoutUser } from "../api/api";
+import { ResultCodes } from "../enum/resulCodes";
 import { LoginDataType } from "../types/types";
-import { InferActionTypes, ThunkActionType } from "./redux-store";
+import store, { InferActionTypes, ThunkActionType } from "./redux-store";
 
 const inititalState = {
-    isAuth: true,
+    isAuth: false,
     loginData: null as LoginDataType | null
 }
 
@@ -45,12 +47,18 @@ type ThunnkType = ThunkActionType<ActionsTypes, void>;
 
 export const login = (loginData: LoginDataType): ThunnkType => 
     async (dispatch) => {
-        dispatch(actions.setLogin(true, loginData));
+        const response = await loginUser(loginData);
+        if (response.status === 201) {
+            dispatch(actions.setLogin(true, response.data));
+        }
     }
 
-export const logout = (): ThunnkType => 
+export const logout = (id?: number): ThunnkType => 
 async (dispatch) => {
-    dispatch(actions.setLogout(false, null));
+    const response = await logoutUser(id);   
+    if (response.status === ResultCodes.Success) {
+        dispatch(actions.setLogout(false, null));        
+    }         
 }
 
 export default authReducer;

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ContactType } from "../types/types";
+import { ContactType, LoginDataType } from "../types/types";
 
 const instance = axios.create({
     withCredentials: true,
@@ -23,5 +23,15 @@ export const deleteContact = async (id: number) => {
 
 export const updateContact = async (id: number, name: string, city: string) => {
     const response = await instance.put(`contacts/${id}`, {name, city});
+    return response;
+}
+
+export const loginUser = async (loginData: LoginDataType) => {
+    const response = await instance.post<LoginDataType>(`users`, loginData);
+    return response;
+}
+
+export const logoutUser = async (id?: number) => {
+    const response = await instance.delete<{}>(`users/${id}`);
     return response;
 }

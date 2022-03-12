@@ -7,4 +7,5 @@ export type ContactType = {
 export type LoginDataType = {
     login: string
     password: string
+    id?: number
 }

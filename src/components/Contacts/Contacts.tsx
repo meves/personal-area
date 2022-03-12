@@ -58,6 +58,9 @@ class Contacts extends React.Component<PropsType, StateType> {
             this.props.addNewContact(name, city);
         } else {
             this.props.upgradeContact(this.state.id, name, city);
+            this.setState({
+                id: null
+            });
         }   
         this.hideAddButtonForm();    
     }
@@ -78,6 +81,14 @@ class Contacts extends React.Component<PropsType, StateType> {
                 <SearchForm searchName={this.searchName}/>
                 <h1>Contact list</h1>
                 <button onClick={this.onLogout} className={styles.logout}>Logout</button>
+                <button className={styles.button}
+                        onClick={this.showAddButtonForm}>
+                    Add contact
+                </button>                    
+                { this.state.isEdit && 
+                    <AddContactForm onSubmit={this.addOrUpdateContact}
+                                    hideAddButtonForm={this.hideAddButtonForm}/> 
+                }
                 <div className={styles.contacts}>
                     { 
                         this.state.searchString !== "" ?
@@ -94,14 +105,7 @@ class Contacts extends React.Component<PropsType, StateType> {
                             />
                         ))
                     }                     
-                </div>
-                <button className={styles.button}
-                        onClick={this.showAddButtonForm}>
-                    Add contact
-                </button>                    
-                { this.state.isEdit && 
-                    <AddContactForm onSubmit={this.addOrUpdateContact}/> 
-                }
+                </div>                
             </div>
         )
     }

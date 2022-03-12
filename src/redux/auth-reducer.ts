@@ -2,7 +2,7 @@ import { LoginDataType } from "../types/types";
 import { InferActionTypes, ThunkActionType } from "./redux-store";
 
 const inititalState = {
-    isAuth: false,
+    isAuth: true,
     loginData: null as LoginDataType | null
 }
 

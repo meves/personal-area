@@ -6,10 +6,20 @@
     position: relative;
     padding-bottom: 1em;
 
+    .searchForm {
+        input {
+            margin-top: 0.3em;
+            font-size: 0.75rem;
+            padding: 0.3em 0.5em;
+        }
+    }
+
     .logout {
         position: absolute;
         top: 1%;
         right: 20%;
+        padding: 0.3em;
+        font-size: 0.7rem;
     }
 
     .contacts {
@@ -48,6 +58,7 @@
 
     button {
         width: 10em; 
+        font-size: 0.7rem;
 
         &:hover {
             cursor: pointer;
@@ -60,7 +71,7 @@
          margin-right: 0.2em;
      }
 
-     .form {
+     .addContactForm {
          display: flex;
          margin-top: 0.5em;
          justify-content: end;
@@ -74,6 +85,7 @@
              outline: none;
              margin-right: 0.3em;
              padding: 0.5em;
+             font-size: 0.75rem;
          }
 
          button {

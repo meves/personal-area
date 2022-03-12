@@ -16,19 +16,9 @@
       "city": "Sankt-Peterburg"
     },
     {
-      "name": "Olga",
-      "city": "Deli",
-      "id": 6
-    },
-    {
-      "name": "Anton",
-      "city": "Berlin",
-      "id": 7
-    },
-    {
       "name": "Sergey",
       "city": "Krasnodar",
-      "id": 8
+      "id": 6
     }
   ]
 }

@@ -15,7 +15,7 @@ const SearchForm: FC<InjectedFormProps<SearchDataType, PropsType> & PropsType> =
         props.searchName(event.target.value);
     }
     return (
-        <form>
+        <form className={styles.searchForm}>
             <Field className={styles.input} type="text" placeholder="name" 
                    name="search" component="input" onChange={handleSearchChange}/>            
         </form>

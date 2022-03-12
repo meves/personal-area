@@ -2,7 +2,8 @@ import { LoginDataType } from "../types/types";
 import { InferActionTypes, ThunkActionType } from "./redux-store";
 
 const inititalState = {
-    isAuth: true
+    isAuth: false,
+    loginData: null as LoginDataType | null
 }
 
 type InitialStateType = typeof inititalState;
@@ -14,12 +15,14 @@ const authReducer = (state = inititalState, action: ActionsTypes) => {
         case "PERSONALAREA/AUTH/LOGIN":
             return {
                 ...state,
-                isAuth: action.payload.isAuth
+                isAuth: action.payload.isAuth,
+                loginData: action.payload.loginData
             }
         case "PERSONALAREA/AUTH/LOGOUT":
             return {
                 ...state,
-                isAuth: action.payload.isAuth
+                isAuth: action.payload.isAuth,
+                loginData: action.payload.loginData
             }
         default: 
             return state;
@@ -27,13 +30,13 @@ const authReducer = (state = inititalState, action: ActionsTypes) => {
 }
 
 const actions = {
-    setLogin: (isAuth: boolean) => ({
+    setLogin: (isAuth: boolean, loginData: LoginDataType) => ({
         type: 'PERSONALAREA/AUTH/LOGIN',
-        payload: { isAuth }
+        payload: { isAuth, loginData }
     } as const),
-    setLogout: (isAuth: boolean) => ({
+    setLogout: (isAuth: boolean, loginData: null | LoginDataType) => ({
         type: 'PERSONALAREA/AUTH/LOGOUT',
-        payload: { isAuth }
+        payload: { isAuth, loginData }
     } as const )
 }
 
@@ -42,12 +45,12 @@ type ThunnkType = ThunkActionType<ActionsTypes, void>;
 
 export const login = (loginData: LoginDataType): ThunnkType => 
     async (dispatch) => {
-        dispatch(actions.setLogin(true));
+        dispatch(actions.setLogin(true, loginData));
     }
 
 export const logout = (): ThunnkType => 
 async (dispatch) => {
-    dispatch(actions.setLogin(false));
+    dispatch(actions.setLogout(false, null));
 }
 
 export default authReducer;

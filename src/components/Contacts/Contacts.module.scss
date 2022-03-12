@@ -1,0 +1,92 @@
+.contactsWrapper {
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+    .logout {
+        position: absolute;
+        top: 3%;
+        right: 20%;
+    }
+
+    .contacts {
+        max-width: 75%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1em;
+
+        .contact {
+            display: flex;
+            justify-content: space-around;
+            padding: 0.5em;
+            background-color: var(--bg-color-medium);
+
+            .name {
+                width: 10em;
+                padding: 0.5em;
+                background-color: var(--bg-color-light);
+                margin-right: 0.3em;
+            }
+
+            .city {
+                width: 10em;
+                padding: 0.5em;
+                background-color: var(--bg-color-light);
+                margin-right: 0.5em;
+            }            
+
+            .editButton {
+                margin-right: 0.2em;
+            }
+            
+        }
+    }
+
+    button {
+        width: 10em; 
+
+        &:hover {
+            cursor: pointer;
+        }
+     }
+
+     .button {
+         padding: 0.5em;
+         text-transform: uppercase;
+         margin-right: 0.2em;
+     }
+
+     .form {
+         display: flex;
+         margin-top: 0.5em;
+         justify-content: end;
+         align-items: center;
+         
+         label {
+            margin-right: 0.5em;
+         }
+
+         .input {
+             outline: none;
+             margin-right: 0.3em;
+             padding: 0.5em;
+         }
+
+         button {
+            width: 10em;
+            padding: 0.5em; 
+    
+            &:hover {
+                cursor: pointer;
+            }
+         }
+     }
+}
+
+.contact.active {
+    border: 2px solid rgb(168, 16, 49);
+    color: rgb(107, 102, 102);
+}

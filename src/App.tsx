@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { FC } from 'react';
+import { connect } from 'react-redux';
 import './App.css';
+import ContactsContainer from './components/Contacts/Contacts';
+import LoginContainer from './components/Login/Login';
+import { AppStateType } from './redux/redux-store';
+import { receiveIsAuth } from './redux/selectors/auth-selector';
 
-function App() {
+const App: FC<MapStatePropsType> = (props) => {
+  const isAuth = props.isAuth;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {isAuth 
+        ? <ContactsContainer/> 
+        : <LoginContainer/>
+      }
     </div>
   );
 }
 
-export default App;
+type MapStatePropsType = {
+  isAuth: boolean
+}
+
+const mapStateToProps = (state: AppStateType): MapStatePropsType => ({
+  isAuth: receiveIsAuth(state)
+})
+
+export default connect<MapStatePropsType, {}, {}, AppStateType>(mapStateToProps, {})(App);

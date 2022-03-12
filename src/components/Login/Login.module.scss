@@ -1,0 +1,30 @@
+.loginWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 25%;
+    margin: 5em auto 0;
+    background-color: var(--bg-color-medium);
+    padding: 2em;
+    border-radius: 5%;
+    font-size: 1.5rem;
+
+    input {
+        margin-bottom: 0.5em;
+        padding: 0.3em 0.5em;
+    }
+
+    .buttonGroup {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 0.5em;
+    }
+    
+    button {
+        padding: 0.3em 0.75em;
+    }
+    button:hover {
+        cursor: pointer;
+    }
+}

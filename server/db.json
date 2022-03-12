@@ -1,0 +1,34 @@
+{
+  "contacts": [
+    {
+      "name": "Oleg",
+      "city": "Kaliningrad",
+      "id": 2
+    },
+    {
+      "name": "Katherina",
+      "city": "Kiev",
+      "id": 3
+    },
+    {
+      "id": 4,
+      "name": "Andrew",
+      "city": "Sankt-Peterburg"
+    },
+    {
+      "name": "Sergey",
+      "city": "Moskow",
+      "id": 6
+    },
+    {
+      "name": "Oleg",
+      "city": "Moskow",
+      "id": 7
+    },
+    {
+      "name": "meves",
+      "city": "Kaliningrad",
+      "id": 8
+    }
+  ]
+}

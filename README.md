@@ -4,9 +4,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Before start project
 
+Attention! Do this just for the first time.
 Install json-server:
-Attention! Do this just for the first time. 
-
+ 
 ### npm install -g server-json
 
 Clone repository:

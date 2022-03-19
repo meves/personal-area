@@ -40,6 +40,11 @@ class Contacts extends React.Component<PropsType, StateType> {
     componentDidMount() {
         this.props.getContacts();
     }    
+    componentDidUpdate(prevProps: PropsType, prevState: StateType) {
+        if (prevProps !== this.props && prevState !== this.state) {
+            this.props.getContacts();
+        }
+    }
     showAddButtonForm = () => {
         this.setState({
             isEdit: true
@@ -70,10 +75,17 @@ class Contacts extends React.Component<PropsType, StateType> {
     onRemoveContact = (id: number) => {
         this.props.removeContact(id);
     } 
-    searchName = (searchString: string) => {
-        this.setState({
+    searchNameSubmit = (searchData: SearchDataType) => {
+        if (searchData.search) {
+            this.setState(({
+                searchString: searchData.search
+            }));
+        }
+    }
+    searchNameChange = (searchString: string) => {
+        this.setState(({
             searchString: searchString
-        });
+        }));
     }
     onLogout = () => {
         this.props.logout(this.props.id);
@@ -81,7 +93,7 @@ class Contacts extends React.Component<PropsType, StateType> {
     render() {
         return (
             <div className={styles.contactsWrapper}>
-                <SearchForm searchName={this.searchName}/>
+                <SearchForm onSubmit={this.searchNameSubmit} searchNameChange={this.searchNameChange}/>
                 <h1>Contact list</h1>
                 <div className={styles.logout}>
                     <button onClick={this.onLogout}>Logout</button>
@@ -95,7 +107,7 @@ class Contacts extends React.Component<PropsType, StateType> {
                     <AddContactForm onSubmit={this.addOrUpdateContact}
                                     hideAddButtonForm={this.hideAddButtonForm}/> 
                 }
-                <div className={styles.contacts}>
+                <div className={styles.contactsBlock}>
                     { 
                         this.state.searchString !== "" ?
                         this.props.contacts.filter(contact => contact.name.toLowerCase()

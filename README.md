@@ -3,12 +3,15 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Before start project
-Attention! Do this just for the first time. Install json-server:
-
+Attention! Do this just for the first time.
+Install json-server:
+ 
 ### npm install -g server-json
+
 Clone repository:
 
 ### git clone https://github.com/meves/personal-area.git
+
 Install packages:
 
 ### yarn install

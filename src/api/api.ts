@@ -1,5 +1,7 @@
 import axios from "axios";
 import { ContactType, LoginDataType } from "../types/types";
+import { LoginUsersData } from "./types";
+
 
 const instance = axios.create({
     withCredentials: true,
@@ -26,8 +28,13 @@ export const updateContact = async (id: number, name: string, city: string) => {
     return response;
 }
 
-export const loginUser = async (loginData: LoginDataType) => {
+export const createUser = async (loginData: LoginDataType) => {
     const response = await instance.post<LoginDataType>(`users`, loginData);
+    return response;
+}
+
+export const getUsers = async () => {
+    const response = await instance.get<Array<LoginDataType>>(`users`);
     return response;
 }
 

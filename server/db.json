@@ -22,6 +22,15 @@
     }
   ],
   "users": [
-    
+    {
+      "login": "sergey",
+      "password": "eeeeeeeeeeeee",
+      "id": 1
+    },
+    {
+      "login": "mevess@yandex.ru",
+      "password": "ddddddddddddddddd",
+      "id": 2
+    }
   ]
 }

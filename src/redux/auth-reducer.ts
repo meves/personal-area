@@ -1,6 +1,7 @@
-import { loginUser, logoutUser } from "../api/api";
+import { createUser, logoutUser, getUsers } from "../api/api";
 import { ResultCodes } from "../enum/resulCodes";
 import { LoginDataType } from "../types/types";
+import { isLoginExists } from "../utils/utils";
 import store, { InferActionTypes, ThunkActionType } from "./redux-store";
 
 const inititalState = {
@@ -47,18 +48,26 @@ type ThunnkType = ThunkActionType<ActionsTypes, void>;
 
 export const login = (loginData: LoginDataType): ThunnkType => 
     async (dispatch) => {
-        const response = await loginUser(loginData);
-        if (response.status === 201) {
-            dispatch(actions.setLogin(true, response.data));
+        const response = await getUsers();
+        if (response.status === 200) {
+            let result = isLoginExists(response.data, loginData);
+            if (result) {
+                dispatch(actions.setLogin(true, loginData));
+            } else {
+                const res = await createUser(loginData);
+                if (res.status === 201) {
+                    dispatch(actions.setLogin(true, res.data));
+                }
+            }
         }
     }
 
 export const logout = (id?: number): ThunnkType => 
 async (dispatch) => {
-    const response = await logoutUser(id);   
-    if (response.status === ResultCodes.Success) {
+    //const response = await logoutUser(id);   
+    //if (response.status === ResultCodes.Success) {
         dispatch(actions.setLogout(false, null));        
-    }         
+    //}         
 }
 
 export default authReducer;
